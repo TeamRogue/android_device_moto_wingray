@@ -112,3 +112,12 @@ TARGET_SCREEN_WIDTH := 1280
 TARGET_BOOTANIMATION_PRELOAD := true
 TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 TARGET_BOOTANIMATION_USE_RGB565 := true
+
+# SELinux
+BOARD_SEPOLICY_DIRS := \
+    device/moto/wingray/selinux
+BOARD_SEPOLICY_UNION := \
+    file_contexts \
+    file.te \
+    device.te \
+    domain.te
