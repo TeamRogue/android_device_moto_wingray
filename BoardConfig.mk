@@ -43,18 +43,17 @@ TARGET_BOARD_PLATFORM := tegra
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_SMP := true
+TARGET_CPU_VARIANT := generic
 TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a
 TARGET_ARCH_VARIANT_CPU := cortex-a9
 TARGET_ARCH_VARIANT_FPU := vfpv3-d16
-ARCH_ARM_HAVE_TLS_REGISTER := true
 
 TARGET_USERIMAGES_USE_EXT4 := true
 
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 251658240
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 31399067648
 BOARD_FLASH_BLOCK_SIZE := 4096
-TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun/file"
 
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
@@ -67,7 +66,6 @@ BOARD_WLAN_DEVICE           := bcmdhd
 WIFI_DRIVER_FW_PATH_PARAM   := "/sys/module/bcmdhd/parameters/firmware_path"
 WIFI_DRIVER_FW_PATH_STA     := "/vendor/firmware/fw_bcmdhd.bin"
 WIFI_DRIVER_FW_PATH_AP      := "/vendor/firmware/fw_bcmdhd_apsta.bin"
-WIFI_DRIVER_FW_PATH_P2P     := "/vendor/firmware/fw_bcmdhd_p2p.bin"
 
 BOARD_USES_GENERIC_AUDIO := false
 
