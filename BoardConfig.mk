@@ -63,7 +63,6 @@ BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
 BOARD_HOSTAPD_DRIVER        := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB   := lib_driver_cmd_bcmdhd
 BOARD_WLAN_DEVICE           := bcmdhd
-#WIFI_DRIVER_MODULE_PATH     := "/system/lib/modules/bcm4329.ko"
 WIFI_DRIVER_FW_PATH_PARAM   := "/sys/module/bcmdhd/parameters/firmware_path"
 WIFI_DRIVER_FW_PATH_STA     := "/vendor/firmware/fw_bcmdhd.bin"
 WIFI_DRIVER_FW_PATH_AP      := "/vendor/firmware/fw_bcmdhd_apsta.bin"
@@ -90,6 +89,8 @@ endif
 
 TARGET_RECOVERY_UI_LIB := librecovery_ui_stingray
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+TARGET_RECOVERY_FSTAB := device/moto/wingray/fstab.stingray
+RECOVERY_FSTAB_VERSION := 2
 BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun/file"
 
 # Avoid the generation of ldrcc instructions
@@ -115,9 +116,16 @@ TARGET_BOOTANIMATION_USE_RGB565 := true
 
 # SELinux
 BOARD_SEPOLICY_DIRS := \
-    device/moto/wingray/selinux
+    device/moto/wingray/sepolicy
+
 BOARD_SEPOLICY_UNION := \
     file_contexts \
-    file.te \
+    app.te \
+    compatibility.te \
     device.te \
-    domain.te
+    drmserver.te \
+    file.te \
+    init_shell.te \
+    surfaceflinger.te \
+    system.te \
+    zygote.te

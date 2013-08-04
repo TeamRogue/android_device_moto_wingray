@@ -1,4 +1,5 @@
 type knv_device, dev_type;
+type sysfs_devices_system_cpu, dev_type;
 type nvhost_device, dev_type;
 type nv_device, dev_type, mlstrustedobject;
 type nvhost_writable_device, dev_type, mlstrustedobject;
