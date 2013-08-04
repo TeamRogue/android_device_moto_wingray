@@ -5,8 +5,8 @@ on init
     mkdir /mnt/shell/emulated 0700 shell shell
     mkdir /storage 0550 system sdcard_r
     mkdir /storage/emulated 0555 root root
-    mkdir /storage/sdcard1 0000 system system
-    mkdir /storage/usbdisk0 0000 system system
+    mkdir /storage/sdcard1 0555 root root
+    mkdir /storage/usbdisk 0555 root root
 
     export EXTERNAL_STORAGE /storage/emulated/legacy
     export SECONDARY_STORAGE /storage/sdcard1
@@ -19,7 +19,7 @@ on init
     symlink /storage/emulated/legacy /storage/sdcard0
     symlink /mnt/shell/emulated/0 /storage/emulated/legacy
     symlink /storage/sdcard1 /mnt/external1
-    symlink /storage/usbdisk0 /mnt/usbdisk
+    symlink /storage/usbdisk /mnt/usbdisk
     mkdir /pds 0777 system system
 
 on fs
@@ -178,6 +178,8 @@ on boot
     chmod 0400 /sys/kernel/debug/binder/stats
     chmod 0400 /sys/kernel/debug/binder/state
 
+    chmod 666 /dev/rfkill
+
 # Ecompass daemon
 service akmd2 /system/bin/akmd2
     class late_start
@@ -185,7 +187,9 @@ service akmd2 /system/bin/akmd2
     group compass misc input
 
 service wpa_supplicant /system/bin/wpa_supplicant \
-    -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf -e/data/misc/wifi/entropy.bin
+    -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
+    -I/system/etc/wifi/wpa_supplicant_overlay.conf \
+    -e/data/misc/wifi/entropy.bin
 #   we will start as root and wpa_supplicant will switch to user wifi
 #   after setting up the capabilities required for WEXT
 #   user wifi

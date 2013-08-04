@@ -45,11 +45,9 @@
     <!-- external SD card -->
     <storage android:mountPoint="/storage/sdcard1"
             android:storageDescription="@string/storage_sd_card"
-            android:removable="true"
-            android:maxFileSize="4096"
-            android:allowMassStorage="true" />
+            android:removable="true" />
     <!-- external USB OTG drive -->
-    <storage android:mountPoint="/storage/usbdisk0"
+    <storage android:mountPoint="/storage/usbdisk"
              android:storageDescription="@string/storage_usb"
              android:removable="true" />
 </StorageList>

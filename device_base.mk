@@ -20,7 +20,8 @@ DEVICE_PACKAGE_OVERLAYS := \
 PRODUCT_PROPERTY_OVERRIDES := \
     wifi.interface=wlan0 \
     ro.sf.lcd_density=160 \
-    drm.service.enabled=true
+    drm.service.enabled=true \
+    ro.bq.gpu_to_cpu_unsupported=1
 
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
@@ -33,11 +34,6 @@ PRODUCT_COPY_FILES += \
     device/moto/wingray/init.stingray.usb.rc:root/init.stingray.usb.rc \
     device/moto/wingray/fstab.stingray:root/fstab.stingray \
     device/moto/wingray/ueventd.stingray.rc:root/ueventd.stingray.rc
-
-ifneq ($(TARGET_PREBUILT_WIFI_MODULE),)
-PRODUCT_COPY_FILES += \
-    $(TARGET_PREBUILT_WIFI_MODULE):system/lib/modules/bcm4329.ko
-endif
 
 PRODUCT_COPY_FILES += \
     device/moto/wingray/mXT1386_08_AA.bin:system/etc/firmware/mXT1386_08_AA.bin \
@@ -62,16 +58,15 @@ PRODUCT_COPY_FILES += \
     $(call add-to-product-copy-files-if-exists,packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml)
 
 PRODUCT_COPY_FILES += \
-        device/moto/wingray/vold.fstab:system/etc/vold.fstab \
-        device/moto/wingray/qtouch-touchscreen.idc:system/usr/idc/qtouch-touchscreen.idc \
-        device/moto/wingray/cpcap-key.kl:system/usr/keylayout/cpcap-key.kl \
-        device/moto/wingray/cpcap-key.kcm:system/usr/keychars/cpcap-key.kcm \
-        device/moto/wingray/stingray-keypad.kl:system/usr/keylayout/stingray-keypad.kl \
-        device/moto/wingray/stingray-keypad.kcm:system/usr/keychars/stingray-keypad.kcm
+	device/moto/wingray/qtouch-touchscreen.idc:system/usr/idc/qtouch-touchscreen.idc \
+	device/moto/wingray/cpcap-key.kl:system/usr/keylayout/cpcap-key.kl \
+	device/moto/wingray/cpcap-key.kcm:system/usr/keychars/cpcap-key.kcm \
+	device/moto/wingray/stingray-keypad.kl:system/usr/keylayout/stingray-keypad.kl \
+	device/moto/wingray/stingray-keypad.kcm:system/usr/keychars/stingray-keypad.kcm
 
 PRODUCT_COPY_FILES += \
-        device/moto/wingray/libaudio/audio_policy.conf:system/etc/audio_policy.conf \
-        device/moto/wingray/audio_effects.conf:system/vendor/etc/audio_effects.conf
+	device/moto/wingray/libaudio/audio_policy.conf:system/etc/audio_policy.conf \
+	device/moto/wingray/audio_effects.conf:system/vendor/etc/audio_effects.conf
 
 PRODUCT_PACKAGES := \
     camera.stingray \
@@ -125,3 +120,5 @@ endif
 
 WIFI_BAND := 802_11_ABG
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4329/device-bcm.mk)
+PRODUCT_COPY_FILES += \
+    hardware/broadcom/wlan/bcmdhd/config/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
