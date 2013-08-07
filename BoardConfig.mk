@@ -124,6 +124,7 @@ BOARD_SEPOLICY_UNION := \
     drmserver.te \
     file.te \
     init_shell.te \
+    rild.te \
     surfaceflinger.te \
     system.te \
     zygote.te
