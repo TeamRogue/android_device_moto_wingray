@@ -21,6 +21,7 @@ PRODUCT_PROPERTY_OVERRIDES := \
     wifi.interface=wlan0 \
     ro.sf.lcd_density=160 \
     drm.service.enabled=true \
+    debug.hwui.render_dirty_regions=false \
     ro.bq.gpu_to_cpu_unsupported=1
 
 # Set default USB interface
