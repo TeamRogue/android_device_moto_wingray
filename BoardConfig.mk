@@ -103,9 +103,7 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_OTA_ASSERT_DEVICE := wingray,stingray,everest
 BOARD_KERNEL_CMDLINE := androidboot.carrier=wifi-only product_type=w
 
-# CM Boot animation
-TARGET_SCREEN_HEIGHT := 800
-TARGET_SCREEN_WIDTH := 1280
+# Boot animation
 TARGET_BOOTANIMATION_PRELOAD := true
 TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 TARGET_BOOTANIMATION_USE_RGB565 := true
